@@ -12,3 +12,15 @@ spring:
     url: jdbc:mysql://localhost:3306/rating_service_microservice
     username: root
     password: 00Mishr@
+
+  application:
+    name: RATING_SERVICE
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+

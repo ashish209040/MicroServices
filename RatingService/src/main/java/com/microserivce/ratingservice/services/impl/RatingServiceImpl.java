@@ -1,11 +1,13 @@
 package com.microserivce.ratingservice.services.impl;
 
 import com.microserivce.ratingservice.entities.Rating;
+import com.microserivce.ratingservice.entities.User;
 import com.microserivce.ratingservice.exceptions.ResourceNotFoundException;
 import com.microserivce.ratingservice.repositories.RatingRepository;
 import com.microserivce.ratingservice.services.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.UUID;
@@ -13,9 +15,11 @@ import java.util.UUID;
 @Service
 public class RatingServiceImpl implements RatingService {
     private final RatingRepository ratingRepository;
+    private final RestTemplate restTemplate;
 
     @Autowired
-    public RatingServiceImpl(RatingRepository ratingRepository){
+    public RatingServiceImpl(RatingRepository ratingRepository, RestTemplate restTemplate){
+        this.restTemplate=restTemplate;
         this.ratingRepository = ratingRepository;
     }
     @Override
@@ -26,7 +30,9 @@ public class RatingServiceImpl implements RatingService {
 
     @Override
     public List<Rating> getAllRatingsByUserId(String userId) {
-        return this.ratingRepository.findByUserId(userId);
+        User user = this.restTemplate.getForObject("http://localhost:8080/users/" + userId, User.class);
+        List<Rating> ratingList = this.ratingRepository.findByUserId(user.getId());
+        return ratingList;
     }
 
     @Override

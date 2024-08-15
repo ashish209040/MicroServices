@@ -1,11 +1,9 @@
 package com.microserivce.userservice.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,4 +22,6 @@ public class User {
     private String email;
     @Column(name = "ABOUT", length = 100)
     private String about;
+    @Transient
+    private List<Rating> ratings;
 }
