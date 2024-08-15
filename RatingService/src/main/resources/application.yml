@@ -1,0 +1,14 @@
+server:
+  port: 8082
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/rating_service_microservice
+    username: root
+    password: 00Mishr@
