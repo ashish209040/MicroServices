@@ -1,4 +1,4 @@
-package com.microserivce.hotelservice.entities;
+package com.microserivce.hotelservice.payload;
 
 import lombok.*;
 
