@@ -30,8 +30,7 @@ public class RatingServiceImpl implements RatingService {
 
     @Override
     public List<Rating> getAllRatingsByUserId(String userId) {
-        User user = this.restTemplate.getForObject("http://localhost:8080/users/" + userId, User.class);
-        List<Rating> ratingList = this.ratingRepository.findByUserId(user.getId());
+        List<Rating> ratingList = this.ratingRepository.findByUserId(userId);
         return ratingList;
     }
 
